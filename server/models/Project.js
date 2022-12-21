@@ -12,7 +12,7 @@ const ProjectSchema = new mongoose.Schema({
     enum: ["Not Started", "In Progress", "Completed"],
   },
   clientId: {
-    type: mongoose.SchemaType.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     // use client model as reference
     ref: "Client",
   },
