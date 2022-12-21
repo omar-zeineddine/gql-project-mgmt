@@ -1,10 +1,26 @@
 {
-	"dependencies": {
-		"express": "^4.18.2",
-		"express-graphql": "^0.12.0",
-		"graphql": "^16.6.0",
-		"mongoose": "^6.8.1",
-		"cors": "^2.8.5",
-		"colors": "link:colors"
-	}
+  "name": "gql-project-mgmt-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "colors": "link:colors",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.6.0",
+    "mongoose": "^6.8.1"
+  }
 }
