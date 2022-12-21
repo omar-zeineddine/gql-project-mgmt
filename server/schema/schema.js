@@ -5,6 +5,7 @@ const {
   GraphQLID,
   GraphQLString,
   GraphQLSchema,
+  GraphQLList,
 } = require("graphql");
 
 // client type
@@ -21,6 +22,14 @@ const ClientType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryTpe",
   fields: {
+    clients: {
+      type: new GraphQLList(ClientType),
+      // no need for args
+      resolve(parent, args) {
+        // return array
+        return clients;
+      },
+    },
     client: {
       type: ClientType,
       args: { id: { type: GraphQLID } },
