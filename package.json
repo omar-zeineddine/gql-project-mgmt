@@ -16,7 +16,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "colors": "link:colors",
+    "colors": "^1.4.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-graphql": "^0.12.0",
