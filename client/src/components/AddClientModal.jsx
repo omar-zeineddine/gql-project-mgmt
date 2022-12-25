@@ -3,28 +3,40 @@ import { FaUser } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 
 function AddClientModal() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(email, name, phone);
+  };
+
   return (
     <>
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-secondary"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#addClientModal"
       >
-        Launch demo modal
+        <div className="d-flex align-items-center">
+          <FaUser className="icons" />
+          <div className="mx-2">Add Client</div>
+        </div>
       </button>
 
       <div
         className="modal fade"
-        id="exampleModal"
-        aria-labelledby="exampleModalLabel"
+        id="addClientModal"
+        aria-labelledby="addClientModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Modal title
+              <h1 className="modal-title fs-5" id="addClientModalLabel">
+                add client
               </h1>
               <button
                 type="button"
@@ -33,18 +45,52 @@ function AddClientModal() {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body">...</div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
-              </button>
+            <div className="modal-body">
+              <form onSubmit={onSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="" className="form-label">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="form-control"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="" className="form-label">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="form-control"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="" className="form-label">
+                    Phone
+                  </label>
+                  <input
+                    type="text"
+                    id="phone"
+                    className="form-control"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
+                <button
+                  className="btn btn-secondary"
+                  type="submit"
+                  data-bs-dismiss="modal" // closes modal on submit
+                >
+                  submit
+                </button>
+              </form>
             </div>
           </div>
         </div>
