@@ -1,15 +1,43 @@
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
+import { ADD_CLIENT } from "../mutations/clientMutation";
+import { GET_CLIENTS } from "../queries/clientQueries";
 
 function AddClientModal() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
+  const [addClient] = useMutation(ADD_CLIENT, {
+    variables: { name, email, phone },
+    // read from cache: getClients
+    update(cache, { data: { addClient } }) {
+      const { clients } = cache.readQuery({ query: GET_CLIENTS });
+      // write to clients and set data to add newClient to current one
+      cache.writeQuery({
+        query: GET_CLIENTS,
+        // can concat
+        // data: { clients: clients.concat([addClient]) },
+        // or use spread operator
+        data: { clients: [...clients, addClient] },
+      });
+    },
+  });
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(email, name, phone);
+    if (name === "" || email === "" || phone === "") {
+      return alert("all must be filled");
+    }
+
+    addClient(name, email, phone);
+
+    // clear form states
+    setName("");
+    setEmail("");
+    setPhone("");
   };
 
   return (
