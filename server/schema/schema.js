@@ -112,6 +112,12 @@ const mutation = new GraphQLObjectType({
         },
       },
       resolve(parent, args) {
+        // delete projects associated with client
+        Project.find({ clientId: args.id }).then((projects) => {
+          projects.forEach((project) => {
+            project.remove();
+          });
+        });
         // mongoose method return by id and remove
         return Client.findByIdAndRemove(args.id);
         // todo: delete project associated with client
