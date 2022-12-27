@@ -28,7 +28,7 @@ function AddProjectModal() {
     e.preventDefault();
     console.log(email, name, phone);
     if (name === "" || description === "" || status === "") {
-      return alert("all must be filled");
+      return alert("all fields must be filled");
     }
 
     addProject(name, description, clientId, status);
